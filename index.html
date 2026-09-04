@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Task Vault</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         HALAMAN UTAMA
+    ========================== -->
+    <section id="homePage" class="page home-page">
+
+        <div class="home-content">
+
+            <div class="terminal-line">
+                STUDENT TASK MANAGEMENT SYSTEM
+            </div>
+
+            <h1>Catatan Tugas</h1>
+
+            <button id="enterDashboard" class="main-button">
+                MASUK DASHBOARD
+                <span>→</span>
+            </button>
+
+            <div class="quote">
+                TIDAK ADA SISTEM YANG AMAN
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         DASHBOARD
+    ========================== -->
+    <section id="dashboardPage" class="page dashboard-page hidden">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            <div class="logo">
+                <div class="logo-symbol">&lt;/&gt;</div>
+
+                <div>
+                    <h2>TASK</h2>
+                    <span>VAULT</span>
+                </div>
+            </div>
+
+
+            <div class="system-status">
+                <div class="status-dot"></div>
+
+                <div>
+                    <small>SYSTEM STATUS</small>
+                    <strong>ONLINE</strong>
+                </div>
+            </div>
+
+
+            <div class="menu-title">
+                MENU
+            </div>
+
+
+            <nav>
+
+                <button class="menu-button active" id="listMenu">
+                    <span>▣</span>
+                    List Tugas
+                </button>
+
+                <button class="menu-button" id="addMenu">
+                    <span>＋</span>
+                    Add / Delete
+                </button>
+
+            </nav>
+
+
+            <div class="sidebar-footer">
+                <span>SECURE TASK SYSTEM</span>
+                <small>v1.0.0</small>
+            </div>
+
+        </aside>
+
+
+        <!-- KONTEN UTAMA -->
+        <main class="main-content">
+
+            <div class="top-bar">
+                <span>~/taskvault/dashboard</span>
+
+                <div class="online-status">
+                    <div class="status-dot"></div>
+                    SYSTEM ONLINE
+                </div>
+            </div>
+
+
+            <!-- =========================
+                 LIST TUGAS
+            ========================== -->
+            <div id="taskListSection">
+
+                <div class="page-header">
+                    <h1>Dashboard</h1>
+                    <p>Monitor dan kelola tugas kuliah kamu.</p>
+                </div>
+
+
+                <!-- STATISTIK -->
+                <div class="stats">
+
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            TOTAL TUGAS
+                            <span>01</span>
+                        </div>
+
+                        <div id="totalTasks" class="stat-number">
+                            0
+                        </div>
+
+                        <p>Semua tugas</p>
+                    </div>
+
+
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            SEGERA
+                            <span>02</span>
+                        </div>
+
+                        <div id="upcomingTasks" class="stat-number">
+                            0
+                        </div>
+
+                        <p>Deadline mendatang</p>
+                    </div>
+
+
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            KATEGORI
+                            <span>03</span>
+                        </div>
+
+                        <div id="categoryCount" class="stat-number">
+                            0
+                        </div>
+
+                        <p>Kategori tugas</p>
+                    </div>
+
+                </div>
+
+
+                <!-- DAFTAR TUGAS -->
+                <div class="task-section-header">
+
+                    <div>
+                        <div class="section-label">
+                            // TASK DATABASE
+                        </div>
+
+                        <h2>Daftar Tugas</h2>
+                    </div>
+
+                    <button id="addTaskFromList" class="small-button">
+                        + Tambah Tugas
+                    </button>
+
+                </div>
+
+
+                <div id="taskContainer" class="task-container">
+
+                    <!-- Tugas akan muncul di sini -->
+
+                    <div id="emptyTask" class="empty-task">
+                        <div class="empty-icon">_</div>
+
+                        <h3>Belum ada tugas</h3>
+
+                        <p>
+                            Tambahkan tugas kuliah kamu melalui menu
+                            <b>Add / Delete</b>.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 ADD / DELETE
+            ========================== -->
+            <div id="addTaskSection" class="hidden">
+
+                <div class="page-header">
+                    <h1>Kelola Tugas</h1>
+                    <p>Tambah atau hapus tugas kuliah kamu.</p>
+                </div>
+
+
+                <div class="form-card">
+
+                    <div class="section-label">
+                        // NEW TASK
+                    </div>
+
+                    <h2>Tambah Tugas</h2>
+
+                    <form id="taskForm">
+
+                        <!-- MATA KULIAH -->
+                        <div class="form-group">
+
+                            <label for="course">
+                                NAMA MATA KULIAH
+                            </label>
+
+                            <input
+                                type="text"
+                                id="course"
+                                placeholder="Contoh: Struktur Data"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- KELAS -->
+                        <div class="form-group">
+
+                            <label for="className">
+                                KELAS
+                            </label>
+
+                            <input
+                                type="text"
+                                id="className"
+                                placeholder="Contoh: R"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- DEADLINE -->
+                        <div class="form-group">
+
+                            <label for="deadline">
+                                DEADLINE
+                            </label>
+
+                            <input
+                                type="date"
+                                id="deadline"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- KATEGORI -->
+                        <div class="form-group">
+
+                            <label for="category">
+                                KATEGORI TUGAS
+                            </label>
+
+                            <select id="category" required>
+
+                                <option value="">
+                                    Pilih kategori
+                                </option>
+
+                                <option value="Praktikum">
+                                    Praktikum
+                                </option>
+
+                                <option value="Laporan">
+                                    Laporan
+                                </option>
+
+                                <option value="Proyek">
+                                    Proyek
+                                </option>
+
+                                <option value="Makalah">
+                                    Makalah
+                                </option>
+
+                                <option value="Presentasi">
+                                    Presentasi
+                                </option>
+
+                                <option value="Quiz">
+                                    Quiz
+                                </option>
+
+                                <option value="Lainnya">
+                                    Lainnya
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <button type="submit" class="submit-button">
+                            + TAMBAH TUGAS
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </main>
+
+    </section>
+
+
+    <!-- =========================
+         SUPABASE
+    ========================== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
