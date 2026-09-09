@@ -4,25 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Task Vault</title>
+    <title>Task Vault // Cyber Task Manager</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- =========================
-         HALAMAN UTAMA
-    ========================== -->
+    <!-- =====================================================
+         HALAMAN AWAL
+    ====================================================== -->
+
     <section id="homePage" class="page home-page">
+
+        <div class="home-overlay"></div>
 
         <div class="home-content">
 
             <div class="terminal-line">
-                STUDENT TASK MANAGEMENT SYSTEM
+                &gt; INITIALIZING STUDENT TASK MANAGEMENT SYSTEM...
             </div>
 
-            <h1>Catatan Tugas</h1>
+            <div class="terminal-status">
+                &gt; SYSTEM STATUS: ONLINE
+            </div>
+
+            <h1>TASKVAULT</h1>
 
             <button id="enterDashboard" class="main-button">
                 MASUK DASHBOARD
@@ -30,7 +37,7 @@
             </button>
 
             <div class="quote">
-                TIDAK ADA SISTEM YANG AMAN
+                "TIDAK ADA SISTEM YANG AMAN"
             </div>
 
         </div>
@@ -38,14 +45,13 @@
     </section>
 
 
-    <!-- =========================
+    <!-- =====================================================
          DASHBOARD
-    ========================== -->
+    ====================================================== -->
+
     <section id="dashboardPage" class="page dashboard-page hidden">
 
-        <!-- =========================
-             SIDEBAR
-        ========================== -->
+        <!-- SIDEBAR -->
         <aside class="sidebar">
 
             <div class="logo">
@@ -62,7 +68,6 @@
             </div>
 
 
-            <!-- SYSTEM STATUS -->
             <div class="system-status">
 
                 <div class="status-dot"></div>
@@ -75,15 +80,13 @@
             </div>
 
 
-            <!-- MENU -->
             <div class="menu-title">
-                MENU
+                // MENU
             </div>
 
 
             <nav>
 
-                <!-- LIST TUGAS -->
                 <button
                     class="menu-button active"
                     id="listMenu"
@@ -94,7 +97,6 @@
                 </button>
 
 
-                <!-- JADWAL -->
                 <button
                     class="menu-button"
                     id="scheduleMenu"
@@ -105,7 +107,6 @@
                 </button>
 
 
-                <!-- ADD / DELETE -->
                 <button
                     class="menu-button"
                     id="addMenu"
@@ -118,28 +119,26 @@
             </nav>
 
 
-            <!-- SIDEBAR FOOTER -->
             <div class="sidebar-footer">
 
-                <span>
-                    SECURE TASK SYSTEM
-                </span>
+                <span>SECURE TASK SYSTEM</span>
 
-                <small>
-                    v1.0.0
-                </small>
+                <small>v2.1.0</small>
 
             </div>
 
         </aside>
 
 
-        <!-- =========================
+        <!-- =================================================
              KONTEN UTAMA
-        ========================== -->
+        ================================================== -->
+
         <main class="main-content">
 
+
             <!-- TOP BAR -->
+
             <div class="top-bar">
 
                 <span>
@@ -157,41 +156,50 @@
             </div>
 
 
-            <!-- =====================================================
+            <!-- =================================================
                  LIST TUGAS
-            ====================================================== -->
-            <div id="taskListSection">
+            ================================================== -->
 
-                <!-- HEADER -->
+            <section id="taskListSection">
+
                 <div class="page-header">
 
-                    <h1>
-                        Dashboard
-                    </h1>
+                    <div>
 
-                    <p>
-                        Monitor dan kelola tugas kuliah kamu.
-                    </p>
+                        <div class="section-label">
+                            // TASK DATABASE
+                        </div>
+
+                        <h1>Daftar Tugas</h1>
+
+                        <p>
+                            Monitor dan kelola tugas kuliah kamu.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        id="addTaskFromList"
+                        class="small-button"
+                        type="button"
+                    >
+                        + TAMBAH TUGAS
+                    </button>
 
                 </div>
 
 
-                <!-- =========================
-                     STATISTIK
-                ========================== -->
+                <!-- STATISTIK -->
+
                 <div class="stats">
 
-                    <!-- TOTAL TUGAS -->
+
                     <div class="stat-card">
 
                         <div class="stat-header">
-
                             TOTAL TUGAS
-
-                            <span>
-                                01
-                            </span>
-
+                            <span>01</span>
                         </div>
 
                         <div
@@ -208,17 +216,11 @@
                     </div>
 
 
-                    <!-- SEGERA -->
                     <div class="stat-card">
 
                         <div class="stat-header">
-
                             SEGERA
-
-                            <span>
-                                02
-                            </span>
-
+                            <span>02</span>
                         </div>
 
                         <div
@@ -229,23 +231,23 @@
                         </div>
 
                         <p>
-                            Deadline 3 hari lagi
+                            Deadline ≤ 3 hari
                         </p>
 
                     </div>
 
+
                 </div>
 
 
-                <!-- =========================
-                     HEADER DAFTAR TUGAS
-                ========================== -->
+                <!-- JUDUL DATABASE -->
+
                 <div class="task-section-header">
 
                     <div>
 
                         <div class="section-label">
-                            // TASK DATABASE
+                            // ACTIVE TASKS
                         </div>
 
                         <h2>
@@ -254,27 +256,15 @@
 
                     </div>
 
-
-                    <button
-                        id="addTaskFromList"
-                        class="small-button"
-                        type="button"
-                    >
-                        + Tambah Tugas
-                    </button>
-
                 </div>
 
 
-                <!-- =========================
-                     CONTAINER TUGAS
-                ========================== -->
+                <!-- CONTAINER TUGAS -->
+
                 <div
                     id="taskContainer"
                     class="task-container"
                 >
-
-                    <!-- Tugas akan dimasukkan JavaScript di sini -->
 
                     <div
                         id="emptyTask"
@@ -290,87 +280,124 @@
                         </h3>
 
                         <p>
-                            Tambahkan tugas kuliah kamu melalui menu
-                            <b>Add / Delete</b>.
+                            Tambahkan tugas kuliah kamu melalui
+                            menu Add / Delete.
                         </p>
 
                     </div>
 
                 </div>
 
-            </div>
+            </section>
 
 
-            <!-- =====================================================
-                 JADWAL
-            ====================================================== -->
-            <div
+            <!-- =================================================
+                 JADWAL KULIAH
+            ================================================== -->
+
+            <section
                 id="scheduleSection"
                 class="hidden"
             >
 
                 <div class="page-header">
 
-                    <h1>
-                        Jadwal Kuliah
-                    </h1>
+                    <div>
 
-                    <p>
-                        Jadwal perkuliahan kamu.
-                    </p>
+                        <div class="section-label">
+                            // ACADEMIC DATABASE
+                        </div>
 
-                </div>
-
-
-                <div class="section-label">
-                    // CLASS SCHEDULE
-                </div>
-
-
-                <div class="schedule-container">
-
-                    <!--
-                        Data jadwal akan dimasukkan
-                        melalui JavaScript.
-                    -->
-
-                    <div
-                        id="scheduleTableContainer"
-                    >
+                        <h1>
+                            Jadwal Kuliah
+                        </h1>
 
                         <p>
-                            Jadwal sedang dimuat...
+                            Jadwal kuliah semester kamu.
                         </p>
 
                     </div>
 
                 </div>
 
-            </div>
+
+                <div class="schedule-info">
+
+                    <span>
+                        SEMESTER GASAL
+                    </span>
+
+                    <span>
+                        2026 / 2027
+                    </span>
+
+                </div>
 
 
-            <!-- =====================================================
+                <div class="table-wrapper">
+
+                    <table class="schedule-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>HARI</th>
+                                <th>JAM</th>
+                                <th>MATA KULIAH</th>
+                                <th>KELAS</th>
+                                <th>SKS</th>
+                                <th>DOSEN</th>
+                                <th>RUANG</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="scheduleBody">
+
+                            <!-- Diisi oleh JavaScript -->
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
                  ADD / DELETE
-            ====================================================== -->
-            <div
+            ================================================== -->
+
+            <section
                 id="addTaskSection"
                 class="hidden"
             >
 
                 <div class="page-header">
 
-                    <h1>
-                        Kelola Tugas
-                    </h1>
+                    <div>
 
-                    <p>
-                        Tambah atau hapus tugas kuliah kamu.
-                    </p>
+                        <div class="section-label">
+                            // TASK MANAGEMENT
+                        </div>
+
+                        <h1>
+                            Kelola Tugas
+                        </h1>
+
+                        <p>
+                            Tambah tugas kuliah baru.
+                        </p>
+
+                    </div>
 
                 </div>
 
 
-                <!-- FORM CARD -->
                 <div class="form-card">
 
                     <div class="section-label">
@@ -382,12 +409,11 @@
                     </h2>
 
 
-                    <!-- =========================
-                         FORM TAMBAH TUGAS
-                    ========================== -->
                     <form id="taskForm">
 
+
                         <!-- MATA KULIAH -->
+
                         <div class="form-group">
 
                             <label for="course">
@@ -398,6 +424,7 @@
                                 type="text"
                                 id="course"
                                 placeholder="Contoh: Struktur Data"
+                                autocomplete="off"
                                 required
                             >
 
@@ -405,6 +432,7 @@
 
 
                         <!-- KELAS -->
+
                         <div class="form-group">
 
                             <label for="className">
@@ -414,7 +442,8 @@
                             <input
                                 type="text"
                                 id="className"
-                                placeholder="Contoh: R"
+                                placeholder="Contoh: RD"
+                                autocomplete="off"
                                 required
                             >
 
@@ -422,6 +451,7 @@
 
 
                         <!-- DEADLINE -->
+
                         <div class="form-group">
 
                             <label for="deadline">
@@ -437,14 +467,8 @@
                         </div>
 
 
-                        <!-- =================================================
-                             KATEGORI TUGAS
+                        <!-- KATEGORI -->
 
-                             SUDAH DIUBAH DARI <select>
-                             MENJADI <input>
-
-                             Jadi pengguna bisa mengetik kategori sendiri.
-                        ================================================== -->
                         <div class="form-group">
 
                             <label for="category">
@@ -454,14 +478,18 @@
                             <input
                                 type="text"
                                 id="category"
-                                placeholder="Contoh: Praktikum"
+                                placeholder="Contoh: Praktikum, Laporan, Quiz, atau bebas"
+                                autocomplete="off"
                                 required
                             >
+
+                            <small class="input-hint">
+                                Kamu bisa menulis kategori sendiri.
+                            </small>
 
                         </div>
 
 
-                        <!-- SUBMIT -->
                         <button
                             type="submit"
                             class="submit-button"
@@ -469,15 +497,128 @@
                             + TAMBAH TUGAS
                         </button>
 
+
                     </form>
 
                 </div>
 
-            </div>
+            </section>
+
 
         </main>
 
     </section>
+
+
+    <!-- =====================================================
+         MODAL EDIT TUGAS
+    ====================================================== -->
+
+    <div
+        id="editModal"
+        class="modal hidden"
+    >
+
+        <div class="modal-content">
+
+            <button
+                id="closeModal"
+                class="modal-close"
+                type="button"
+            >
+                ×
+            </button>
+
+
+            <div class="section-label">
+                // EDIT TASK
+            </div>
+
+            <h2>
+                Edit Tugas
+            </h2>
+
+
+            <form id="editForm">
+
+                <input
+                    type="hidden"
+                    id="editId"
+                >
+
+
+                <div class="form-group">
+
+                    <label for="editCourse">
+                        NAMA MATA KULIAH
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editCourse"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="editClassName">
+                        KELAS
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editClassName"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="editDeadline">
+                        DEADLINE
+                    </label>
+
+                    <input
+                        type="date"
+                        id="editDeadline"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="editCategory">
+                        KATEGORI TUGAS
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editCategory"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="submit-button"
+                >
+                    SIMPAN PERUBAHAN
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
 
 
     <!-- =====================================================
@@ -486,8 +627,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-
-    <!-- JAVASCRIPT WEBSITE -->
     <script src="script.js"></script>
 
 </body>
