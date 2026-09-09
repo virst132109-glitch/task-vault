@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Task Vault</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         HALAMAN UTAMA
+    ========================== -->
+    <section id="homePage" class="page home-page">
+
+        <div class="home-content">
+
+            <div class="terminal-line">
+                STUDENT TASK MANAGEMENT SYSTEM
+            </div>
+
+            <h1>Catatan Tugas</h1>
+
+            <button id="enterDashboard" class="main-button">
+                MASUK DASHBOARD
+                <span>→</span>
+            </button>
+
+            <div class="quote">
+                TIDAK ADA SISTEM YANG AMAN
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         DASHBOARD
+    ========================== -->
+    <section id="dashboardPage" class="page dashboard-page hidden">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            <div class="logo">
+
+                <div class="logo-symbol">
+                    &lt;/&gt;
+                </div>
+
+                <div>
+                    <h2>TASK</h2>
+                    <span>VAULT</span>
+                </div>
+
+            </div>
+
+
+            <div class="system-status">
+
+                <div class="status-dot"></div>
+
+                <div>
+                    <small>SYSTEM STATUS</small>
+                    <strong>ONLINE</strong>
+                </div>
+
+            </div>
+
+
+            <div class="menu-title">
+                MENU
+            </div>
+
+
+            <nav>
+
+                <!-- LIST TUGAS -->
+                <button
+                    class="menu-button active"
+                    id="listMenu"
+                    type="button"
+                >
+                    <span>▣</span>
+                    List Tugas
+                </button>
+
+
+                <!-- JADWAL -->
+                <button
+                    class="menu-button"
+                    id="scheduleMenu"
+                    type="button"
+                >
+                    <span>▤</span>
+                    Jadwal
+                </button>
+
+
+                <!-- ADD / DELETE -->
+                <button
+                    class="menu-button"
+                    id="addMenu"
+                    type="button"
+                >
+                    <span>＋</span>
+                    Add / Delete
+                </button>
+
+            </nav>
+
+
+            <div class="sidebar-footer">
+
+                <span>
+                    SECURE TASK SYSTEM
+                </span>
+
+                <small>
+                    v1.0.0
+                </small>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =========================
+             KONTEN UTAMA
+        ========================== -->
+
+        <main class="main-content">
+
+            <div class="top-bar">
+
+                <span>
+                    ~/taskvault/dashboard
+                </span>
+
+                <div class="online-status">
+
+                    <div class="status-dot"></div>
+
+                    SYSTEM ONLINE
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 LIST TUGAS
+            ========================== -->
+
+            <div id="taskListSection">
+
+                <div class="page-header">
+
+                    <h1>
+                        Dashboard
+                    </h1>
+
+                    <p>
+                        Monitor dan kelola tugas kuliah kamu.
+                    </p>
+
+                </div>
+
+
+                <!-- STATISTIK -->
+
+                <div class="stats">
+
+                    <!-- TOTAL -->
+
+                    <div class="stat-card">
+
+                        <div class="stat-header">
+
+                            TOTAL TUGAS
+
+                            <span>
+                                01
+                            </span>
+
+                        </div>
+
+                        <div
+                            id="totalTasks"
+                            class="stat-number"
+                        >
+                            0
+                        </div>
+
+                        <p>
+                            Semua tugas
+                        </p>
+
+                    </div>
+
+
+                    <!-- SEGERA -->
+
+                    <div class="stat-card">
+
+                        <div class="stat-header">
+
+                            SEGERA
+
+                            <span>
+                                02
+                            </span>
+
+                        </div>
+
+                        <div
+                            id="upcomingTasks"
+                            class="stat-number"
+                        >
+                            0
+                        </div>
+
+                        <p>
+                            Deadline 3 hari lagi
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- HEADER DAFTAR TUGAS -->
+
+                <div class="task-section-header">
+
+                    <div>
+
+                        <div class="section-label">
+                            // TASK DATABASE
+                        </div>
+
+                        <h2>
+                            Daftar Tugas
+                        </h2>
+
+                    </div>
+
+
+                    <button
+                        id="addTaskFromList"
+                        class="small-button"
+                        type="button"
+                    >
+                        + Tambah Tugas
+                    </button>
+
+                </div>
+
+
+                <!-- TASK CONTAINER -->
+
+                <div
+                    id="taskContainer"
+                    class="task-container"
+                >
+
+                    <div
+                        id="emptyTask"
+                        class="empty-task"
+                    >
+
+                        <div class="empty-icon">
+                            _
+                        </div>
+
+                        <h3>
+                            Belum ada tugas
+                        </h3>
+
+                        <p>
+                            Tambahkan tugas kuliah kamu melalui menu
+                            <b>Add / Delete</b>.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 JADWAL
+            ========================== -->
+
+            <div
+                id="scheduleSection"
+                class="hidden"
+            >
+
+                <div class="page-header">
+
+                    <h1>
+                        Jadwal Kuliah
+                    </h1>
+
+                    <p>
+                        Jadwal kuliah Semester Gasal 2026/2027.
+                    </p>
+
+                </div>
+
+
+                <!-- INFORMASI SEMESTER -->
+
+                <div class="schedule-info">
+
+                    <div class="section-label">
+                        // ACADEMIC SCHEDULE
+                    </div>
+
+                    <h2>
+                        JADWAL KULIAH SEMESTER GASAL 2026/2027
+                    </h2>
+
+                    <p>
+                        Jadwal perkuliahan mahasiswa.
+                    </p>
+
+                </div>
+
+
+                <!-- TABEL JADWAL -->
+
+                <div class="schedule-table-wrapper">
+
+                    <table class="schedule-table">
+
+                        <thead>
+
+                            <tr>
+                                <th>HARI</th>
+                                <th>JAM</th>
+                                <th>MATA KULIAH</th>
+                                <th>KELAS</th>
+                                <th>SKS</th>
+                                <th>DOSEN</th>
+                                <th>RUANG</th>
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                            <!-- SENIN -->
+
+                            <tr>
+
+                                <td data-label="Hari">
+                                    Senin
+                                </td>
+
+                                <td data-label="Jam">
+                                    09.20–12.00
+                                </td>
+
+                                <td
+                                    data-label="Mata Kuliah"
+                                    class="course-name"
+                                >
+                                    Kapita Selekta
+                                </td>
+
+                                <td data-label="Kelas">
+                                    RD
+                                </td>
+
+                                <td data-label="SKS">
+                                    3
+                                </td>
+
+                                <td data-label="Dosen">
+                                    Raidah Hanifah, S.T., M.T.
+                                </td>
+
+                                <td data-label="Ruang">
+                                    GK2 207
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td data-label="Hari">
+                                    Senin
+                                </td>
+
+                                <td data-label="Jam">
+                                    13.00–15.40
+                                </td>
+
+                                <td
+                                    data-label="Mata Kuliah"
+                                    class="course-name"
+                                >
+                                    Inteligensi Buatan
+                                </td>
+
+                                <td data-label="Kelas">
+                                    RA
+                                </td>
+
+                                <td data-label="SKS">
+                                    3
+                                </td>
+
+                                <td data-label="Dosen">
+                                    Rahman Indra Kesuma, S.Kom., M.Cs.
+                                </td>
+
+                                <td data-label="Ruang">
+                                    GK2 123
+                                </td>
+
+                            </tr>
+
+
+                            <!-- SELASA -->
+
+                            <tr>
+
+                                <td data-label="Hari">
+                                    Selasa
+                                </td>
+
+                                <td data-label="Jam">
+                                    13.00–15.40
+                                </td>
+
+                                <td
+                                    data-label="Mata Kuliah"
+                                    class="course-name"
+                                >
+                                    Keamanan Siber
+                                </td>
+
+                                <td data-label="Kelas">
+                                    R
+                                </td>
+
+                                <td data-label="SKS">
+                                    3
+                                </td>
+
+                                <td data-label="Dosen">
+                                    Sarwono Sutikno, Dr.Eng., CISA, CISSP, CISM
+                                </td>
+
+                                <td data-label="Ruang">
+                                    Labtek 3, Lantai 3, Lab IOT
+                                </td>
+
+                            </tr>
+
+
+                            <!-- RABU -->
+
+                            <tr>
+
+                                <td data-label="Hari">
+                                    Rabu
+                                </td>
+
+                                <td data-label="Jam">
+                                    09.20-11.50
+                                </td>
+
+                                <td
+                                    data-label="Mata Kuliah"
+                                    class="course-name"
+                                >
+                                    Karier, Etika, & Kewirausahaan
+                                </td>
+
+                                <td data-label="Kelas">
+                                    R47IF
+                                </td>
+
+                                <td data-label="SKS">
+                                    2
+                                </td>
+
+                                <td data-label="Dosen">
+                                    Bagus Aryatama M.OR
+                                </td>
+
+                                <td data-label="Ruang">
+                                    F001
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td data-label="Hari">
+                                    Rabu
+                                </td>
+
+                                <td data-label="Jam">
+                                    15.00-17.30
+                                </td>
+
+                                <td
+                                    data-label="Mata Kuliah"
+                                    class="course-name"
+                                >
+                                    Kriptografi
+                                </td>
+
+                                <td data-label="Kelas">
+                                    R
+                                </td>
+
+                                <td data-label="SKS">
+                                    3
+                                </td>
+
+                                <td data-label="Dosen">
+                                    King Angga Wijaya
+                                </td>
+
+                                <td data-label="Ruang">
+                                    GK2 318
+                                </td>
+
+                            </tr>
+
+
+                            <!-- KAMIS -->
+
+                            <tr>
+
+                                <td data-label="Hari">
+                                    Kamis
+                                </td>
+
+                                <td data-label="Jam">
+                                    13.00–15.40
+                                </td>
+
+                                <td
+                                    data-label="Mata Kuliah"
+                                    class="course-name"
+                                >
+                                    Metodologi Penelitian
+                                </td>
+
+                                <td data-label="Kelas">
+                                    RD
+                                </td>
+
+                                <td data-label="SKS">
+                                    3
+                                </td>
+
+                                <td data-label="Dosen">
+                                    Alya Khairunnisa Rizkita, S.Kom., M.Kom.
+                                </td>
+
+                                <td data-label="Ruang">
+                                    GK2 224
+                                </td>
+
+                            </tr>
+
+
+                            <!-- JUMAT -->
+
+                            <tr>
+
+                                <td data-label="Hari">
+                                    Jumat
+                                </td>
+
+                                <td data-label="Jam">
+                                    09.20–11.05
+                                </td>
+
+                                <td
+                                    data-label="Mata Kuliah"
+                                    class="course-name"
+                                >
+                                    Sistem Informasi
+                                </td>
+
+                                <td data-label="Kelas">
+                                    RD
+                                </td>
+
+                                <td data-label="SKS">
+                                    2
+                                </td>
+
+                                <td data-label="Dosen">
+                                    Miranti Verdiana, M.Si.
+                                </td>
+
+                                <td data-label="Ruang">
+                                    GK2 305
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td data-label="Hari">
+                                    Jumat
+                                </td>
+
+                                <td data-label="Jam">
+                                    13.00–15.40
+                                </td>
+
+                                <td
+                                    data-label="Mata Kuliah"
+                                    class="course-name"
+                                >
+                                    Jaringan Komputer
+                                </td>
+
+                                <td data-label="Kelas">
+                                    RC
+                                </td>
+
+                                <td data-label="SKS">
+                                    3
+                                </td>
+
+                                <td data-label="Dosen">
+                                    Ilham Firman Ashari, S.Kom., M.T.
+                                </td>
+
+                                <td data-label="Ruang">
+                                    GK2 303
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <!-- TOTAL SKS -->
+
+                <div class="schedule-footer">
+
+                    <div>
+
+                        <span>
+                            #SIBERKUAT
+                        </span>
+
+                        <p>
+                            "Tidak ada sistem yang aman"
+                        </p>
+
+                    </div>
+
+
+                    <div class="total-sks">
+
+                        <span>
+                            TOTAL SKS
+                        </span>
+
+                        <strong>
+                            22
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 ADD / EDIT TASK
+            ========================== -->
+
+            <div
+                id="addTaskSection"
+                class="hidden"
+            >
+
+                <div class="page-header">
+
+                    <h1>
+                        Kelola Tugas
+                    </h1>
+
+                    <p>
+                        Tambah atau edit tugas kuliah kamu.
+                    </p>
+
+                </div>
+
+
+                <div class="form-card">
+
+                    <div class="section-label">
+                        // NEW TASK
+                    </div>
+
+                    <h2 id="formTitle">
+                        Tambah Tugas
+                    </h2>
+
+
+                    <form id="taskForm">
+
+                        <!-- MATA KULIAH -->
+
+                        <div class="form-group">
+
+                            <label for="course">
+                                NAMA MATA KULIAH
+                            </label>
+
+                            <input
+                                type="text"
+                                id="course"
+                                placeholder="Contoh: Struktur Data"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- KELAS -->
+
+                        <div class="form-group">
+
+                            <label for="className">
+                                KELAS
+                            </label>
+
+                            <input
+                                type="text"
+                                id="className"
+                                placeholder="Contoh: R"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- DEADLINE -->
+
+                        <div class="form-group">
+
+                            <label for="deadline">
+                                DEADLINE
+                            </label>
+
+                            <input
+                                type="date"
+                                id="deadline"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- KATEGORI -->
+
+                        <div class="form-group">
+
+                            <label for="category">
+                                KATEGORI TUGAS
+                            </label>
+
+                            <select
+                                id="category"
+                                required
+                            >
+
+                                <option value="">
+                                    Pilih kategori
+                                </option>
+
+                                <option value="Praktikum">
+                                    Praktikum
+                                </option>
+
+                                <option value="Laporan">
+                                    Laporan
+                                </option>
+
+                                <option value="Proyek">
+                                    Proyek
+                                </option>
+
+                                <option value="Makalah">
+                                    Makalah
+                                </option>
+
+                                <option value="Presentasi">
+                                    Presentasi
+                                </option>
+
+                                <option value="Quiz">
+                                    Quiz
+                                </option>
+
+                                <option value="Lainnya">
+                                    Lainnya
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-buttons">
+
+                            <button
+                                type="submit"
+                                class="submit-button"
+                                id="submitTaskButton"
+                            >
+                                + TAMBAH TUGAS
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="cancel-edit-button hidden"
+                                id="cancelEditButton"
+                            >
+                                BATAL EDIT
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+
+                <!-- DELETE INFO -->
+
+                <div class="delete-info">
+
+                    <div class="section-label">
+                        // TASK MANAGEMENT
+                    </div>
+
+                    <p>
+                        Untuk menghapus tugas, gunakan tombol
+                        <b>DELETE</b> pada daftar tugas.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </main>
+
+    </section>
+
+
+    <!-- =========================
+         SUPABASE
+    ========================== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
