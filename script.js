@@ -105,12 +105,48 @@ const editDeadline =
 const editCategory =
     document.getElementById("editCategory");
 
+const editStatus =
+    document.getElementById("editStatus");
+
+const toastContainer =
+    document.getElementById("toastContainer");
+
 
 // =========================================================
 // DATA
 // =========================================================
 
 let tasks = [];
+
+
+function showToast(message, type = "info") {
+
+    const toast = document.createElement("div");
+
+    toast.className = `toast toast-${type}`;
+    toast.textContent = message;
+
+    toastContainer.appendChild(toast);
+
+    requestAnimationFrame(() => {
+
+        toast.classList.add("show");
+
+    });
+
+    setTimeout(() => {
+
+        toast.classList.remove("show");
+
+        setTimeout(() => {
+
+            toast.remove();
+
+        }, 250);
+
+    }, 2400);
+
+}
 
 
 // =========================================================
@@ -260,6 +296,12 @@ taskForm.addEventListener(
                 .value
                 .trim();
 
+        const status =
+            document
+                .getElementById("status")
+                .value
+                .trim() || "Belum Dikerjakan";
+
 
         if (
             !course ||
@@ -268,7 +310,7 @@ taskForm.addEventListener(
             !category
         ) {
 
-            alert("Semua data harus diisi.");
+            showToast("Semua data harus diisi.", "error");
 
             return;
 
@@ -284,7 +326,8 @@ taskForm.addEventListener(
                     course: course,
                     class_name: className,
                     deadline: deadline,
-                    category: category
+                    category: category,
+                    status: status
                 }
             ]);
 
@@ -293,9 +336,9 @@ taskForm.addEventListener(
 
             console.error(error);
 
-            alert(
-                "Gagal menambahkan tugas:\n\n" +
-                error.message
+            showToast(
+                "Gagal menambahkan tugas: " + error.message,
+                "error"
             );
 
             return;
@@ -303,7 +346,7 @@ taskForm.addEventListener(
         }
 
 
-        alert("Tugas berhasil ditambahkan.");
+        showToast("Tugas berhasil ditambahkan.", "success");
 
 
         taskForm.reset();
@@ -415,6 +458,9 @@ function createTaskCard(task) {
     const deadlineInfo =
         getDeadlineInfo(task.deadline);
 
+    const statusInfo =
+        getStatusInfo(task.status);
+
 
     card.innerHTML = `
 
@@ -432,8 +478,14 @@ function createTaskCard(task) {
                 CLASS // ${escapeHtml(task.class_name)}
             </div>
 
-            <div class="category-badge">
-                ${escapeHtml(task.category)}
+            <div class="task-meta-row">
+                <div class="category-badge">
+                    ${escapeHtml(task.category)}
+                </div>
+
+                <div class="status-badge ${statusInfo.className}">
+                    ${escapeHtml(statusInfo.label)}
+                </div>
             </div>
 
         </div>
@@ -538,6 +590,9 @@ function openEditModal(task) {
     editCategory.value =
         task.category || "";
 
+    editStatus.value =
+        task.status || "Belum Dikerjakan";
+
 
     editModal.classList.remove("hidden");
 
@@ -611,6 +666,9 @@ editForm.addEventListener(
         const category =
             editCategory.value.trim();
 
+        const status =
+            editStatus.value.trim() || "Belum Dikerjakan";
+
 
         if (
             !id ||
@@ -620,9 +678,7 @@ editForm.addEventListener(
             !category
         ) {
 
-            alert(
-                "Semua data harus diisi."
-            );
+            showToast("Semua data harus diisi.", "error");
 
             return;
 
@@ -638,7 +694,8 @@ editForm.addEventListener(
                 course: course,
                 class_name: className,
                 deadline: deadline,
-                category: category
+                category: category,
+                status: status
             })
             .eq("id", id)
             .select("id");
@@ -648,9 +705,9 @@ editForm.addEventListener(
 
             console.error(error);
 
-            alert(
-                "Gagal mengubah tugas:\n\n" +
-                error.message
+            showToast(
+                "Gagal mengubah tugas: " + error.message,
+                "error"
             );
 
             return;
@@ -660,8 +717,9 @@ editForm.addEventListener(
 
         if (!updatedRows || updatedRows.length === 0) {
 
-            alert(
-                "Data tidak berubah. Pastikan policy UPDATE untuk tabel tasks sudah mengizinkan pengguna anon."
+            showToast(
+                "Data tidak berubah. Pastikan policy UPDATE tabel tasks sudah diizinkan untuk anon.",
+                "warning"
             );
 
             return;
@@ -669,9 +727,7 @@ editForm.addEventListener(
         }
 
 
-        alert(
-            "Tugas berhasil diperbarui."
-        );
+        showToast("Tugas berhasil diperbarui.", "success");
 
 
         closeEditModal();
@@ -713,9 +769,9 @@ async function deleteTask(id) {
 
         console.error(error);
 
-        alert(
-            "Gagal menghapus tugas:\n\n" +
-            error.message
+        showToast(
+            "Gagal menghapus tugas: " + error.message,
+            "error"
         );
 
         return;
@@ -723,9 +779,7 @@ async function deleteTask(id) {
     }
 
 
-    alert(
-        "Tugas berhasil dihapus."
-    );
+    showToast("Tugas berhasil dihapus.", "success");
 
 
     await loadTasks();
@@ -798,6 +852,36 @@ function isWithinThreeDays(deadline) {
 
 
     return days >= 0 && days <= 3;
+
+}
+
+
+function getStatusInfo(statusValue) {
+
+    const normalized = String(statusValue || "Belum Dikerjakan").trim();
+
+    if (normalized === "Selesai") {
+
+        return {
+            label: "Selesai",
+            className: "status-done"
+        };
+
+    }
+
+    if (normalized === "Sedang Dikerjakan") {
+
+        return {
+            label: "Sedang Dikerjakan",
+            className: "status-progress"
+        };
+
+    }
+
+    return {
+        label: "Belum Dikerjakan",
+        className: "status-pending"
+    };
 
 }
 

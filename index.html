@@ -490,6 +490,21 @@
                         </div>
 
 
+                        <div class="form-group">
+
+                            <label for="status">
+                                STATUS TUGAS
+                            </label>
+
+                            <select id="status" required>
+                                <option value="Belum Dikerjakan">Belum Dikerjakan</option>
+                                <option value="Sedang Dikerjakan">Sedang Dikerjakan</option>
+                                <option value="Selesai">Selesai</option>
+                            </select>
+
+                        </div>
+
+
                         <button
                             type="submit"
                             class="submit-button"
@@ -513,6 +528,8 @@
     <!-- =====================================================
          MODAL EDIT TUGAS
     ====================================================== -->
+
+    <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
 
     <div
         id="editModal"
@@ -603,6 +620,21 @@
                         id="editCategory"
                         required
                     >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="editStatus">
+                        STATUS TUGAS
+                    </label>
+
+                    <select id="editStatus" required>
+                        <option value="Belum Dikerjakan">Belum Dikerjakan</option>
+                        <option value="Sedang Dikerjakan">Sedang Dikerjakan</option>
+                        <option value="Selesai">Selesai</option>
+                    </select>
 
                 </div>
 
