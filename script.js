@@ -300,7 +300,7 @@ taskForm.addEventListener(
             document
                 .getElementById("status")
                 .value
-                .trim() || "Belum Dikerjakan";
+                .trim() || "Pending";
 
 
         if (
@@ -310,7 +310,7 @@ taskForm.addEventListener(
             !category
         ) {
 
-            showToast("Semua data harus diisi.", "error");
+            showToast("All fields are required.", "error");
 
             return;
 
@@ -337,7 +337,7 @@ taskForm.addEventListener(
             console.error(error);
 
             showToast(
-                "Gagal menambahkan tugas: " + error.message,
+                "Task creation failed: " + error.message,
                 "error"
             );
 
@@ -346,7 +346,7 @@ taskForm.addEventListener(
         }
 
 
-        showToast("Tugas berhasil ditambahkan.", "success");
+        showToast("Task added to the matrix.", "success");
 
 
         taskForm.reset();
@@ -393,7 +393,7 @@ async function loadTasks() {
         taskContainer.innerHTML = `
             <div class="empty-task">
                 <div class="empty-icon">!</div>
-                <h3>Gagal mengambil data</h3>
+                <h3>Data retrieval failed</h3>
                 <p>${escapeHtml(error.message)}</p>
             </div>
         `;
@@ -591,7 +591,7 @@ function openEditModal(task) {
         task.category || "";
 
     editStatus.value =
-        task.status || "Belum Dikerjakan";
+        task.status || "Pending";
 
 
     editModal.classList.remove("hidden");
@@ -667,7 +667,7 @@ editForm.addEventListener(
             editCategory.value.trim();
 
         const status =
-            editStatus.value.trim() || "Belum Dikerjakan";
+            editStatus.value.trim() || "Pending";
 
 
         if (
@@ -678,7 +678,7 @@ editForm.addEventListener(
             !category
         ) {
 
-            showToast("Semua data harus diisi.", "error");
+            showToast("All fields are required.", "error");
 
             return;
 
@@ -706,7 +706,7 @@ editForm.addEventListener(
             console.error(error);
 
             showToast(
-                "Gagal mengubah tugas: " + error.message,
+                "Task update failed: " + error.message,
                 "error"
             );
 
@@ -718,7 +718,7 @@ editForm.addEventListener(
         if (!updatedRows || updatedRows.length === 0) {
 
             showToast(
-                "Data tidak berubah. Pastikan policy UPDATE tabel tasks sudah diizinkan untuk anon.",
+                "No changes detected. Check the task update policy for anon access.",
                 "warning"
             );
 
@@ -727,7 +727,7 @@ editForm.addEventListener(
         }
 
 
-        showToast("Tugas berhasil diperbarui.", "success");
+        showToast("Task updated successfully.", "success");
 
 
         closeEditModal();
@@ -746,7 +746,7 @@ async function deleteTask(id) {
 
     const confirmation =
         confirm(
-            "Yakin ingin menghapus tugas ini?"
+            "Delete this task from the matrix?"
         );
 
 
@@ -770,7 +770,7 @@ async function deleteTask(id) {
         console.error(error);
 
         showToast(
-            "Gagal menghapus tugas: " + error.message,
+            "Task removal failed: " + error.message,
             "error"
         );
 
@@ -779,7 +779,7 @@ async function deleteTask(id) {
     }
 
 
-    showToast("Tugas berhasil dihapus.", "success");
+    showToast("Task removed from the matrix.", "success");
 
 
     await loadTasks();
@@ -858,28 +858,28 @@ function isWithinThreeDays(deadline) {
 
 function getStatusInfo(statusValue) {
 
-    const normalized = String(statusValue || "Belum Dikerjakan").trim();
+    const normalized = String(statusValue || "Pending").trim();
 
-    if (normalized === "Selesai") {
+    if (normalized === "Completed" || normalized === "Selesai") {
 
         return {
-            label: "Selesai",
+            label: "Completed",
             className: "status-done"
         };
 
     }
 
-    if (normalized === "Sedang Dikerjakan") {
+    if (normalized === "In Progress" || normalized === "Sedang Dikerjakan") {
 
         return {
-            label: "Sedang Dikerjakan",
+            label: "In Progress",
             className: "status-progress"
         };
 
     }
 
     return {
-        label: "Belum Dikerjakan",
+        label: "Pending",
         className: "status-pending"
     };
 
@@ -917,7 +917,7 @@ function getDeadlineInfo(deadline) {
 
         return {
             text:
-                `TERLAMBAT ${Math.abs(days)} HARI`,
+                `LATE BY ${Math.abs(days)} DAY(S)`,
             overdue: true
         };
 
@@ -927,7 +927,7 @@ function getDeadlineInfo(deadline) {
     if (days === 0) {
 
         return {
-            text: "HARI INI",
+            text: "DUE TODAY",
             overdue: false
         };
 
@@ -937,7 +937,7 @@ function getDeadlineInfo(deadline) {
     if (days === 1) {
 
         return {
-            text: "TERSISA 1 HARI",
+            text: "1 DAY LEFT",
             overdue: false
         };
 
@@ -948,7 +948,7 @@ function getDeadlineInfo(deadline) {
 
         return {
             text:
-                `TERSISA ${days} HARI`,
+                `${days} DAYS LEFT`,
             overdue: false
         };
 
@@ -957,7 +957,7 @@ function getDeadlineInfo(deadline) {
 
     return {
         text:
-            `TERSISA ${days} HARI`,
+            `${days} DAYS LEFT`,
         overdue: false
     };
 
