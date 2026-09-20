@@ -533,13 +533,27 @@ function openEditModal(task) {
         task.class_name || "";
 
     editDeadline.value =
-        task.deadline || "";
+        normalizeDateInput(task.deadline);
 
     editCategory.value =
         task.category || "";
 
 
     editModal.classList.remove("hidden");
+
+}
+
+
+function normalizeDateInput(dateValue) {
+
+    if (!dateValue) {
+
+        return "";
+
+    }
+
+
+    return String(dateValue).slice(0, 10);
 
 }
 
@@ -616,6 +630,7 @@ editForm.addEventListener(
 
 
         const {
+            data: updatedRows,
             error
         } = await supabaseClient
             .from("tasks")
@@ -625,7 +640,8 @@ editForm.addEventListener(
                 deadline: deadline,
                 category: category
             })
-            .eq("id", id);
+            .eq("id", id)
+            .select("id");
 
 
         if (error) {
@@ -635,6 +651,17 @@ editForm.addEventListener(
             alert(
                 "Gagal mengubah tugas:\n\n" +
                 error.message
+            );
+
+            return;
+
+        }
+
+
+        if (!updatedRows || updatedRows.length === 0) {
+
+            alert(
+                "Data tidak berubah. Pastikan policy UPDATE untuk tabel tasks sudah mengizinkan pengguna anon."
             );
 
             return;
